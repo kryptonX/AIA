@@ -51,8 +51,7 @@ int main(int argc, char *argv[]) {
       int c;
       while (--argc > 0 && (*++argv)[0] == '-')
             c = *++argv[0];
-      switch (c) {             
-             case 'd':    
+     if (c == 'd') {  
                       printf("...\n");                      
                       char data[strlen(argv[0])];
                       strcpy(data, argv[0]);                      
@@ -70,11 +69,11 @@ int main(int argc, char *argv[]) {
                       for (i = 0; i < sizeof(decrypted); i++)
                           printf("%c", decrypted[i]);
                       printf("\n");    
-                      break;
-            case 'e':
+           }
+           else if (c == 'e') {
                      printf("...\n");
                      char edata[strlen(argv[0])];
-                     strcpy(edata, argv[0]);
+                     strcpy(edata, argv[0]);    	    
                      char encrypted[strlen(argv[0])];
                      
                      for (count = 0; count < sizeof(edata); count++)
@@ -84,18 +83,14 @@ int main(int argc, char *argv[]) {
                                  encrypted[count] = alphabet[buffer + 2];
                           }
                      }
+		     encrypted[strlen(argv[0])] = '\0';
                      for (i = 0; i < sizeof(encrypted); i++)
                           printf("%c", encrypted[i]);
-                     printf("\n");   
-            break;
-            default:
-                    printf("segmentation fault\n");
-            break;
-      }
-  }     
+           }
+           
+      }     
     
-    
-    printf("...\n");
+   
     getchar();  
-    return SUCCESS; 
+    return 0;
 }
